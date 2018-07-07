@@ -21,6 +21,12 @@ public class ParkingLot {
     Map<String, String> map2;
     // Map of Color, List of RegNo
     Map<String, ArrayList<String>> map3;
+    /*[
+        {"string1" : ["afa", "asda", "asd"]}
+        {"string2" : ["afa", "asda", "asd"]}
+        {"string3" : ["afa", "asda", "asd"]}
+        {"string4" : ["afa", "asda", "asd"]}
+    ]*/
 
 
     public void createParkingLot(String lotCount) { //76547475475473753564653465, gfsgfdg
