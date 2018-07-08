@@ -2,7 +2,6 @@ package com.gojek.parkinglot;
 
 import org.junit.Test;
 
-
 import static org.junit.Assert.*;
 
 public class ParkingLotTest {
@@ -126,6 +125,116 @@ public class ParkingLotTest {
 
         assertNotNull(parkingLot.map1.size());
     }
+
+    ////////getRegistrationNumbersFromColor/////////
+    @Test
+    public void getRegistrationNumbersFromColorTest_True_Color( ) {
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        parkingLot.getRegistrationNumbersFromColor("blue");
+
+        assertTrue(parkingLot.map3.containsKey("blue"));
+    }
+
+    @Test
+    public void getRegistrationNumbersFromColorTest_NotNull_Map3( ) {
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        parkingLot.getRegistrationNumbersFromColor("blue");
+
+        assertNotNull(parkingLot.map3.size());
+
+    }
+
+    @Test
+    public void getRegistrationNumbersFromColorTest_Equals_Color( ) {
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        parkingLot.getRegistrationNumbersFromColor("blue");
+
+        assertEquals("12232",parkingLot.map3.get("blue").get(0));
+    }
+
+    @Test
+    public void getRegistrationNumbersFromColorTest_False_Color( ) {
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        parkingLot.getRegistrationNumbersFromColor("blue");
+
+        assertFalse(parkingLot.map3.containsKey("green"));
+    }
+
+    ///////getSlotNumbersFromColor////////
+    @Test
+    public void getSlotNumbersFromColorTest_True_Color( ) {
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        parkingLot.getSlotNumbersFromColor("blue");
+
+        assertTrue(parkingLot.map3.containsKey("blue"));
+    }
+
+    @Test
+    public void getSlotNumbersFromColorTest_False_Color( ) {
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        parkingLot.getSlotNumbersFromColor("blue");
+
+        assertFalse(parkingLot.map3.containsKey("green"));
+    }
+
+    @Test
+    public void getSlotNumbersFromColorTest_Equals_Color_First() {
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        parkingLot.getSlotNumbersFromColor("blue");
+        String regNoFirst = parkingLot.map3.get("blue").get(0);
+
+        assertEquals("1",parkingLot.map2.get(regNoFirst));
+    }
+
 
 
 }
