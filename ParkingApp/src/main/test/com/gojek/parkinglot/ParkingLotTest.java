@@ -2,9 +2,23 @@ package com.gojek.parkinglot;
 
 import org.junit.Test;
 
+import java.io.*;
+
 import static org.junit.Assert.*;
 
 public class ParkingLotTest {
+
+//    protected final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+//    @Before
+//    public void setUpStreams() {
+//        System.setOut(new PrintStream(output));
+//    }
+
+//    @After
+//    public void cleanUpStreams() {
+//        System.setOut(null);
+//    }
 
     @Test
     public void createParkingLot_true( ) {
@@ -221,6 +235,29 @@ public class ParkingLotTest {
 
     @Test
     public void getSlotNumbersFromColorTest_Equals_Color_First() {
+//        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+//        System.setOut(new PrintStream(output));
+//        System.setOut(null);
+
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+//        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        parkingLot.getSlotNumbersFromColor("blue");
+//        String regNoFirst = parkingLot.map3.get("blue").get(0);
+        System.out.println("www0 ");
+//        System.out.println("www " +  output);
+//        Assert.assertEquals(parkingLot.map3.size(), output.toString());
+
+//        assertEquals(parkingLot.map3.size(), parkingLot.getSlotNumbersFromColor("blue")));
+    }
+    @Test
+    public void getSlotNumbersFromColorTest_SisOutText(){
+
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.createParkingLot("5");
         parkingLot.park("12232", "blue");
@@ -229,10 +266,22 @@ public class ParkingLotTest {
         parkingLot.park("22222", "white");
         parkingLot.park("2522", "blue");
 
-        parkingLot.getSlotNumbersFromColor("blue");
-        String regNoFirst = parkingLot.map3.get("blue").get(0);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
 
-        assertEquals("1",parkingLot.map2.get(regNoFirst));
+        parkingLot.getSlotNumbersFromColor("green");
+////////use a PrintWriter to build the expected string
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+
+        printWriter.println("Not found");
+        printWriter.println();
+
+        String expected = expectedStringWriter.toString();
+
+        assertEquals(expected, output.toString());
+
+        System.setOut(null);
     }
 
 
