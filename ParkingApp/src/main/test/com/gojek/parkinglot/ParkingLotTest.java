@@ -313,4 +313,29 @@ public class ParkingLotTest {
         System.setOut(null);
     }
 
+    @Test
+    public void getSlotNumbersFromRegNoTest_EqualsSlot_fromRegNO(){
+
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        parkingLot.getSlotNumberFromRegNo("22222");
+////////use a PrintWriter to build the expected string
+
+
+        String expected = parkingLot.map2.get("22222") + "\r\n";
+
+        assertEquals(expected, output.toString());
+
+        System.setOut(null);
+    }
+
 }
