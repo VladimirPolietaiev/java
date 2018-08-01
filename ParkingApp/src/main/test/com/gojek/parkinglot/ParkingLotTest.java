@@ -284,6 +284,33 @@ public class ParkingLotTest {
         System.setOut(null);
     }
 
+    @Test
+    public void getSlotNumbersFromRegNoTest_SisOutText(){
 
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        parkingLot.getSlotNumberFromRegNo("436");
+////////use a PrintWriter to build the expected string
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+
+        printWriter.println("Not found");
+        printWriter.println();
+
+        String expected = expectedStringWriter.toString();
+
+        assertEquals(expected, output.toString());
+
+        System.setOut(null);
+    }
 
 }
