@@ -255,6 +255,7 @@ public class ParkingLotTest {
 
 //        assertEquals(parkingLot.map3.size(), parkingLot.getSlotNumbersFromColor("blue")));
     }
+
     @Test
     public void getSlotNumbersFromColorTest_SisOutText(){
 
@@ -281,7 +282,7 @@ public class ParkingLotTest {
 
         assertEquals(expected, output.toString());
 
-        System.setOut(null);
+       // System.setOut(null);
     }
 
     @Test
@@ -310,7 +311,7 @@ public class ParkingLotTest {
 
         assertEquals(expected, output.toString());
 
-        System.setOut(null);
+        //System.setOut(null);
     }
 
     @Test
@@ -335,7 +336,99 @@ public class ParkingLotTest {
 
         assertEquals(expected, output.toString());
 
-        System.setOut(null);
+        //System.setOut(null);
+    }
+
+    /////// tests status ///////////
+    @Test
+    public void statusTest_parkingNoCreated(){
+
+        ParkingLot parkingLot = new ParkingLot();
+//        parkingLot.createParkingLot("5");
+////        parkingLot.park("12232", "blue");
+////        parkingLot.park("435", "red");
+////        parkingLot.park("462", "black");
+////        parkingLot.park("22222", "white");
+////        parkingLot.park("2522", "blue");
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        parkingLot.status();
+
+////////use a PrintWriter to build the expected string
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+
+        printWriter.println("Sorry, parking lot is not created");
+        printWriter.println();
+
+        String expected = expectedStringWriter.toString();
+
+        assertEquals(expected, output.toString());
+
+        //System.setOut(null);
+    }
+
+    @Test
+    public void statusTest_parkingCreatedNotCar(){
+
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+//        parkingLot.park("12232", "blue");
+//        parkingLot.park("435", "red");
+//        parkingLot.park("462", "black");
+//        parkingLot.park("22222", "white");
+//        parkingLot.park("2522", "blue");
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        parkingLot.status();
+
+////////use a PrintWriter to build the expected string
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+
+        printWriter.println("Parking lot is empty");
+        printWriter.println();
+
+        String expected = expectedStringWriter.toString();
+
+        assertEquals(expected, output.toString());
+
+        //System.setOut(null);
+    }
+
+    @Test
+    public void statusTest_parkingCreatedWithtCar(){
+
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.createParkingLot("5");
+        parkingLot.park("12232", "blue");
+        parkingLot.park("435", "red");
+        parkingLot.park("462", "black");
+        parkingLot.park("22222", "white");
+        parkingLot.park("2522", "blue");
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        parkingLot.status();
+
+////////use a PrintWriter to build the expected string
+        StringWriter expectedStringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+
+        printWriter.println("Slot No.\tRegistration No.\tColor");
+        printWriter.println();
+        printWriter.println("i + \"\\t\" + car.regNo + \"\\t\" + car.color");
+
+        String expected = expectedStringWriter.toString();
+
+        assertEquals(expected, output.toString());
+
+        //System.setOut(null);
     }
 
 }
