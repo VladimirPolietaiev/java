@@ -421,8 +421,16 @@ public class ParkingLotTest {
         PrintWriter printWriter = new PrintWriter(expectedStringWriter);
 
         printWriter.println("Slot No.\tRegistration No.\tColor");
+//        printWriter.println();
+//        printWriter.println(parkingLot.map2.get("12232") + " "  + parkingLot.map3.get("blue").get(0) + parkingLot.map3.get("blue") );
+
+        printWriter.println(parkingLot.map2.get("12232") + "\t"  + parkingLot.map3.get("blue").get(0)+ "\t" + "blue");
+        printWriter.println(parkingLot.map2.get("435") + "\t"  + parkingLot.map3.get("red").get(0) + "\t" + "red" );
+        printWriter.println(parkingLot.map2.get("462") + "\t"  + parkingLot.map3.get("black").get(0) + "\t" +"black");
+        printWriter.println(parkingLot.map2.get("22222") + "\t"  + parkingLot.map3.get("white").get(0) +"\t" +"white");
+        printWriter.println(parkingLot.map2.get("2522") + "\t"  + parkingLot.map3.get("blue").get(1) + "\t"+"blue");
         printWriter.println();
-        printWriter.println("i + \"\\t\" + car.regNo + \"\\t\" + car.color");
+
 
         String expected = expectedStringWriter.toString();
 
